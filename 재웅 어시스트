@@ -1,0 +1,127 @@
+//전역변수를 쓰지 말고 해보자. 
+#include<iostream>
+using namespace std;
+
+int* Add(int Data[][4]); //prototype declaration. 배열을 인자로 받는다. 열은 미리 정하고, 행을 나중에. 주솟값을 받음. 주소값은 int를 가르킴.
+
+int main() {
+	int Data[3][4] = {}; // 데이터 선언. 
+	int* sum; //포인터 선언. 주솟값을 가르키고, 주솟값은 int형을 가르킴. 
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 4; j++) {
+			cin >> Data[i][j];
+		}
+	}//값 입력. 
+
+	sum = Add(Data);//데이터 값을 Add 함수에 넣고 sum을 통해서 받음. 
+	for (int i = 0; i < 3; i++) {
+		cout << sum[i] << ' '; //섬을 출력함. 
+	}
+
+	return 0;
+}
+
+int* Add(int Data[][4]) {//열은 정해져 있기에 행을 통해서 받음. 
+	int* sum = new int[3]{}; // new선언하면서 초기화. 
+
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 4; j++) {
+			sum[i] += Data[i][j];
+		}
+	}
+	return sum;
+}
+/*
+
+#include<iostream>
+#define MAX 100
+using namespace std;
+
+int Add(int ar2[][4], int size);
+
+int main() {
+
+	int Data[3][4] = { 0, };
+
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 4; j++) {
+			cin >> Data[i][j];
+		}
+	}//배열로 값 입력. 
+	int total = Add(Data, 3);
+	
+	return 0;
+}
+
+int Add(int ar2[][4], int size) {
+
+	int* total = nullptr;
+	total=new int[MAX];
+
+	for (int r = 0; r < size; r++) {
+		for (int c = 0; c < 4; c++) {
+			total[r] += ar2[r][c];
+		}
+		cout << r+1 <<" 행: " << total[r] << endl;
+	}
+	delete[] total;
+}
+
+#include <iostream>
+
+int main() {
+	int* list = new int[arr_size];
+	for (int i = 0; i < arr_size; i++) {
+		std::cin >> list[i];
+	}
+	for (int i = 0; i < arr_size; i++) {
+		std::cout << i << "th element of list : " << list[i] << std::endl;
+	}
+	delete[] list;
+	return 0;
+}
+
+
+//7.3, 7.4번 포인터/주소, 구조체, 파일입출력, 
+#include<iostream>
+using namespace std;
+//data 이름은 모호함으로 인해 Arr로 수정하여 진행했습니다. 
+void Calculate();
+void Input();
+
+int Arr[3][4] = { 0, };//입력. 
+int total = 0;
+int num = 0;
+int arr[3] = { 0, }; //반환. 
+
+int main() {
+
+	Input(); 
+	Calculate(); 
+ 	return 0; 
+}
+void Calculate() { 
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 4; j++) {
+			total += Arr[i][j];
+
+			//int* ptr = new int(total); 도 성립함. 
+			int* ptr = new int; //int 메모리를 os로부터 받고, ptr은 인트형인 그 메모리 주소를 가르킨다. 
+			*ptr = total; //그 주소에다가 total 값을 넣는다. 
+
+		}
+		
+	}
+}
+void Input() {
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 4; j++) {
+			cin >> num;
+			Arr[i][j] = num;
+		}
+	}
+}
+
+
+
+*/
